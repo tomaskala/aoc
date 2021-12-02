@@ -8,12 +8,12 @@ int main(void) {
   long curr, a = 0, h = 0, v = 0;
   while (!feof(stdin)) {
     if (fgets(buf, sizeof(buf), stdin)) {
-      op = buf[0];
       tok = strtok(buf, " ");
       if (!tok) {
         fprintf(stderr, "invalid token1\n");
         exit(EXIT_FAILURE);
       }
+      op = tok[0];
       tok = strtok(NULL, " ");
       if (!tok) {
         fprintf(stderr, "invalid token2\n");
