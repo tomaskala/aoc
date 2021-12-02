@@ -1,0 +1,47 @@
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void) {
+  char buf[32] = {'\0'}, *tok, op;
+  long curr, a = 0, h = 0, v = 0;
+  while (!feof(stdin)) {
+    if (fgets(buf, sizeof(buf), stdin)) {
+      op = buf[0];
+      tok = strtok(buf, " ");
+      if (!tok) {
+        fprintf(stderr, "invalid token1\n");
+        exit(EXIT_FAILURE);
+      }
+      tok = strtok(NULL, " ");
+      if (!tok) {
+        fprintf(stderr, "invalid token2\n");
+        exit(EXIT_FAILURE);
+      }
+      errno = 0;
+      curr = strtol(tok, NULL, 10);
+      if (errno) {
+        fprintf(stderr, "error parsing %s", tok);
+        exit(EXIT_FAILURE);
+      }
+      switch (op) {
+      case 'f':
+        h += curr;
+        v += curr * a;
+        break;
+      case 'd':
+        a += curr;
+        break;
+      case 'u':
+        a -= curr;
+        break;
+      default:
+        fprintf(stderr, "unexpected input %s", buf);
+        exit(EXIT_FAILURE);
+      }
+    }
+  }
+  printf("%ld\n", h * v);
+  return EXIT_SUCCESS;
+}
