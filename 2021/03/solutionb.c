@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define LONG_WIDTH (int)(sizeof(long) * 8)
-
 int main(void) {
   char buf[32] = {'\0'}, *p;
   int delo2[1000] = {0}, delco2[1000] = {0};
