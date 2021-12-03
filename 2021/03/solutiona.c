@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define LONG_WIDTH (int)(sizeof(long) * 8)
+
 int main(void) {
   char buf[32] = {'\0'}, *p;
-  int i, lines = 0, counter[64] = {0};
+  int i, lines = 0, counter[LONG_WIDTH] = {0};
   long curr, ndigits, gamma = 0;
   while (!feof(stdin)) {
     if (fgets(buf, sizeof(buf), stdin)) {
@@ -15,12 +17,12 @@ int main(void) {
         exit(EXIT_FAILURE);
       }
       lines++;
-      for (i = 0; i < 64; ++i)
+      for (i = 0; i < LONG_WIDTH; ++i)
         counter[i] += (curr >> i) & 1;
     }
   }
-  ndigits = 64 - (p - buf);
-  for (i = 64; i >= 0; --i)
+  ndigits = LONG_WIDTH - (p - buf);
+  for (i = LONG_WIDTH; i >= 0; --i)
     gamma = (gamma << 1 | (counter[i] > (lines >> 1)));
   printf("%ld\n", gamma * (~gamma << ndigits >> ndigits));
   return EXIT_SUCCESS;
