@@ -7,7 +7,7 @@
 int main(void) {
   char buf[32] = {'\0'}, *p;
   int i, lines = 0, counter[LONG_WIDTH] = {0};
-  long curr, ndigits, gamma = 0;
+  long curr, excess, gamma = 0;
   while (!feof(stdin)) {
     if (fgets(buf, sizeof(buf), stdin)) {
       errno = 0;
@@ -21,9 +21,9 @@ int main(void) {
         counter[i] += (curr >> i) & 1;
     }
   }
-  ndigits = LONG_WIDTH - (p - buf);
+  excess = LONG_WIDTH - (p - buf);
   for (i = LONG_WIDTH; i >= 0; --i)
     gamma = (gamma << 1 | (counter[i] > (lines >> 1)));
-  printf("%ld\n", gamma * (~gamma << ndigits >> ndigits));
+  printf("%ld\n", gamma * (~gamma << excess >> excess));
   return EXIT_SUCCESS;
 }
