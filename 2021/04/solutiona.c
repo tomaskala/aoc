@@ -50,19 +50,15 @@ int main(void) {
       }
     }
   }
-  for (n = 0; n < totalnums; ++n) {
-    for (b = 0; b < totalboards; ++b) {
-      for (i = 1; i < M; ++i) {
-        for (j = 1; j < N; ++j) {
+  for (n = 0; n < totalnums; ++n)
+    for (b = 0; b < totalboards; ++b)
+      for (i = 1; i < M; ++i)
+        for (j = 1; j < N; ++j)
           if (nums[n] == boards[AT(b, i, j)]) {
             boards[AT(b, i, j)] = -1;
             if (++boards[AT(b, i, 0)] == N || ++boards[AT(b, 0, j)] == M)
               goto done;
           }
-        }
-      }
-    }
-  }
 done:
   curr = 0;
   for (i = 1; i < M; ++i)
