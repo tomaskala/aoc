@@ -7,7 +7,8 @@
 int main(void) {
   char buf[32] = {'\0'}, *p;
   int delo2[MAX_LINES] = {0}, delco2[MAX_LINES] = {0};
-  int i, j, lines = 0, majo2, minco2, kepto2, keptco2;
+  int j, majo2, minco2, kepto2, keptco2;
+  size_t i, lines = 0;
   long nums[MAX_LINES] = {0}, o2 = 0, co2 = 0, curr, ndigits;
   while (!feof(stdin)) {
     if (fgets(buf, sizeof(buf), stdin)) {
