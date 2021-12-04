@@ -2,11 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_LINES 1000
+
 int main(void) {
   char buf[32] = {'\0'}, *p;
-  int delo2[1000] = {0}, delco2[1000] = {0};
+  int delo2[MAX_LINES] = {0}, delco2[MAX_LINES] = {0};
   int i, j, lines = 0, majo2, minco2, kepto2, keptco2;
-  long nums[1000] = {0}, o2 = 0, co2 = 0, curr, ndigits;
+  long nums[MAX_LINES] = {0}, o2 = 0, co2 = 0, curr, ndigits;
   while (!feof(stdin)) {
     if (fgets(buf, sizeof(buf), stdin)) {
       errno = 0;
