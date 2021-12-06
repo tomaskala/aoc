@@ -25,13 +25,12 @@ int main(void) {
     fish[curr]++;
   }
   for (i = 0; i < SIMS; ++i) {
-    total = fish[0];
+    curr = fish[0];
     for (j = 1; j < PERIOD; ++j)
       fish[j - 1] = fish[j];
-    fish[6] += total;
-    fish[8] = total;
+    fish[6] += curr;
+    fish[8] = curr;
   }
-  total = 0;
   for (i = 0; i < PERIOD; ++i)
     total += fish[i];
   printf("%lu\n", total);
