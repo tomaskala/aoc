@@ -8,7 +8,7 @@
 
 int main(void) {
   char buf[800] = {'\0'}, *tok;
-  size_t i = 0, j;
+  size_t i = 0, head = 0;
   long fish[PERIOD] = {0}, curr, total = 0;
   if (!fgets(buf, sizeof(buf), stdin)) {
     fprintf(stderr, "cannot read the input\n");
@@ -25,11 +25,10 @@ int main(void) {
     fish[curr]++;
   }
   for (i = 0; i < SIMS; ++i) {
-    curr = fish[0];
-    for (j = 1; j < PERIOD; ++j)
-      fish[j - 1] = fish[j];
-    fish[6] += curr;
-    fish[8] = curr;
+    curr = fish[head];
+    head = (head + 1) % PERIOD;
+    fish[(head + 6) % PERIOD] += curr;
+    fish[(head + 8) % PERIOD] = curr;
   }
   for (i = 0; i < PERIOD; ++i)
     total += fish[i];
