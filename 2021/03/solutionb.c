@@ -4,7 +4,9 @@
 
 #define MAX_LINES 1000
 
-int main(void) {
+int
+main(void)
+{
   char buf[32] = {'\0'}, *p;
   int delo2[MAX_LINES] = {0}, delco2[MAX_LINES] = {0};
   int j, majo2, minco2, kepto2, keptco2;

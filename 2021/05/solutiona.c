@@ -9,7 +9,9 @@
 #define MAX2(x, y) ((x) > (y) ? (x) : (y))
 #define MIN2(x, y) ((x) < (y) ? (x) : (y))
 
-long readnum(char *buf) {
+static long
+readnum(char *buf)
+{
   char *tok;
   long res;
   if (!(tok = strtok(buf, ","))) {
@@ -25,7 +27,9 @@ long readnum(char *buf) {
   return res;
 }
 
-int main(void) {
+int
+main(void)
+{
   char buf[32] = {'\0'}, *tok1, *tok2;
   size_t x1, x2, y1, y2, i;
   int mat[MMAX * NMAX] = {0}, total = 0;

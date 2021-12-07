@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
+int
+main(void)
+{
   char buf[10] = {'\0'};
   int incs = 0;
   long prev = 0, curr;

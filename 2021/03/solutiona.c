@@ -4,7 +4,9 @@
 
 #define LONG_WIDTH (int)(sizeof(long) * 8)
 
-int main(void) {
+int
+main(void)
+{
   char buf[32] = {'\0'}, *p;
   int i, lines = 0, counter[LONG_WIDTH] = {0};
   long curr, excess, gamma = 0;

@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
+int
+main(void)
+{
   char buf[10] = {'\0'};
   int incs = 0, lines = 0;
   size_t r = 0, w = 0;

@@ -6,7 +6,9 @@
 #define PERIOD 9
 #define SIMS 256
 
-int main(void) {
+int
+main(void)
+{
   char buf[800] = {'\0'}, *tok;
   size_t i = 0, head = 0;
   long fish[PERIOD] = {0}, curr, total = 0;

@@ -7,7 +7,9 @@
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 #define MIN(x, y) ((x) < (y) ? (x) : (y))
 
-long cost(long pos, long positions[MAX_NUMS], size_t total) {
+static long
+cost(long pos, long positions[MAX_NUMS], size_t total)
+{
   size_t i;
   long diff, result = 0;
   for (i = 0; i < total; ++i) {
@@ -17,7 +19,9 @@ long cost(long pos, long positions[MAX_NUMS], size_t total) {
   return result / 2;
 }
 
-int main(void) {
+int
+main(void)
+{
   char buf[4000] = {'\0'}, *tok;
   size_t i, total = 0;
   long positions[MAX_NUMS] = {0}, curr, result;

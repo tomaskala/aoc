@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int
+main(void)
+{
   char buf[32] = {'\0'}, *tok, op;
   long curr, h = 0, v = 0;
   while (!feof(stdin)) {

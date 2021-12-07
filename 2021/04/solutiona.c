@@ -9,7 +9,9 @@
 #define N 6
 #define AT(b, i, j) ((b) * (M) * (N) + (i) * (N) + (j))
 
-int main(void) {
+int
+main(void)
+{
   char buf[512] = {'\0'}, *tok;
   size_t b, i, j = 0, n, totalnums = 0, totalboards = 0;
   long nums[MAX_NUMS] = {0}, boards[MAX_BOARDS * N * N] = {0}, curr;

@@ -12,7 +12,9 @@
   arr[j] = tmp; \
   } while (0)
 
-long cost(long pos, long positions[MAX_NUMS], size_t total) {
+static long
+cost(long pos, long positions[MAX_NUMS], size_t total)
+{
   size_t i;
   long result = 0;
   for (i = 0; i < total; ++i)
@@ -20,8 +22,9 @@ long cost(long pos, long positions[MAX_NUMS], size_t total) {
   return result;
 }
 
-size_t
-partition(long positions[MAX_NUMS], size_t left, size_t right, size_t pivot) {
+static size_t
+partition(long positions[MAX_NUMS], size_t left, size_t right, size_t pivot)
+{
   size_t i, store = left;
   long pivotval = positions[pivot];
   SWAP(positions, pivot, right);
@@ -34,8 +37,9 @@ partition(long positions[MAX_NUMS], size_t left, size_t right, size_t pivot) {
   return store;
 }
 
-long
-quickselect(long positions[MAX_NUMS], size_t left, size_t right, size_t k) {
+static long
+quickselect(long positions[MAX_NUMS], size_t left, size_t right, size_t k)
+{
   size_t pivot;
   while (1) {
     if (left == right)
@@ -50,7 +54,9 @@ quickselect(long positions[MAX_NUMS], size_t left, size_t right, size_t k) {
   }
 }
 
-int main(void) {
+int
+main(void)
+{
   char buf[4000] = {'\0'}, *tok;
   size_t total = 0;
   long positions[MAX_NUMS] = {0}, curr, result;
