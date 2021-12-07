@@ -6,11 +6,11 @@
 #define MAX_NUMS 1000
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 #define MIN(x, y) ((x) < (y) ? (x) : (y))
-
-int longcmp(const void *a, const void *b) {
-  const long *ia = (long *) a, *ib = (long *) b;
-  return *ia - *ib;
-}
+#define SWAP(arr, i, j) do { \
+  long tmp = arr[i]; \
+  arr[i] = arr[j]; \
+  arr[j] = tmp; \
+  } while (0)
 
 long cost(long pos, long positions[MAX_NUMS], size_t total) {
   size_t i;
@@ -18,6 +18,36 @@ long cost(long pos, long positions[MAX_NUMS], size_t total) {
   for (i = 0; i < total; ++i)
     result += ABS(positions[i] - pos);
   return result;
+}
+
+size_t
+partition(long positions[MAX_NUMS], size_t left, size_t right, size_t pivot) {
+  size_t i, store = left;
+  long pivotval = positions[pivot];
+  SWAP(positions, pivot, right);
+  for (i = left; i < right - 1; ++i)
+    if (positions[i] < pivotval) {
+      SWAP(positions, i, store);
+      store++;
+    }
+  SWAP(positions, right, store);
+  return store;
+}
+
+long
+quickselect(long positions[MAX_NUMS], size_t left, size_t right, size_t k) {
+  size_t pivot;
+  while (1) {
+    if (left == right)
+      return positions[left];
+    pivot = partition(positions, left, right, left);
+    if (pivot == k)
+      return positions[k];
+    else if (k < pivot)
+      right = pivot - 1;
+    else
+      left = pivot + 1;
+  }
 }
 
 int main(void) {
@@ -41,12 +71,15 @@ int main(void) {
     }
     positions[total++] = curr;
   }
-  qsort(positions, total, sizeof(long), &longcmp);
-  if (total % 2 == 0)
-    result = MIN(cost(positions[total / 2], positions, total),
-                 cost(positions[total / 2 - 1], positions, total));
-  else
-    result = cost(positions[total / 2], positions, total);
+  if (total % 2 == 0) {
+    curr = quickselect(positions, 0, total - 1, total / 2);
+    result = cost(curr, positions, total);
+    curr = quickselect(positions, 0, total - 1, total / 2 - 1);
+    result = MIN(result, cost(curr, positions, total));
+  } else {
+    curr = quickselect(positions, 0, total - 1, total / 2);
+    result = cost(curr, positions, total);
+  }
   printf("%ld\n", result);
   return EXIT_SUCCESS;
 }
