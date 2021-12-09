@@ -23,7 +23,8 @@ main(void)
     if (fgets(buf, sizeof(buf), stdin)) {
       tok1 = strtok(buf, "|");
       tok2 = strtok(NULL, "\n");
-      memset(bits, 0x7F, sizeof(bits));
+      for (i = 0; i < 7; ++i)
+        bits[i] = 0x7F;
       for (tok3 = strtok(tok1, " "); tok3; tok3 = strtok(NULL, " ")) {
         bitrep = 0x00;
         for (j = 0, len = 0; tok3[j]; ++j, ++len)
