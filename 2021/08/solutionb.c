@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define A segments[0]
-#define B segments[1]
-#define C segments[2]
-#define D segments[3]
-#define E segments[4]
-#define F segments[5]
-#define G segments[6]
+#define A (segments[0])
+#define B (segments[1])
+#define C (segments[2])
+#define D (segments[3])
+#define E (segments[4])
+#define F (segments[5])
+#define G (segments[6])
 
 int
 main(void)
