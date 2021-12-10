@@ -6,7 +6,7 @@
 #define NMAX 102
 #define AT(i, j) ((i) * (NMAX) + (j))
 
-int
+static int
 dfs(int matrix[MMAX * NMAX], size_t i, size_t j, int visited[MMAX * NMAX])
 {
   int result = 1;
