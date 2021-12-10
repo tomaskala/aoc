@@ -12,11 +12,11 @@ cmp(const void *a, const void *b)
 }
 
 static long
-score(char buf[MAX_LINES], char matches[MAX_LINES], int scores[MAX_LINES])
+score(char buf[128], char matches[128], int scores[128])
 {
   size_t i, j = 0;
   long cost = 0;
-  char stack[MAX_LINES];
+  char stack[128];
   for (i = 0; buf[i] != '\n'; ++i) {
     switch (buf[i]) {
     case '(':
@@ -44,10 +44,10 @@ score(char buf[MAX_LINES], char matches[MAX_LINES], int scores[MAX_LINES])
 int
 main(void)
 {
-  char buf[MAX_LINES] = {'\0'};
-  char matches[MAX_LINES];
+  char buf[128] = {'\0'};
+  char matches[128];
   size_t total = 0;
-  int scores[MAX_LINES];
+  int scores[128];
   long cost = 0;
   long costs[MAX_LINES];
   matches['('] = ')';
