@@ -13,23 +13,21 @@ main(void)
   int risk = 0, matrix[MMAX * NMAX];
   for (i = 0; i < MMAX * NMAX; ++i)
     matrix[i] = 10;
-  while (!feof(stdin)) {
-    for (i = 1; fgets(buf, sizeof(buf), stdin); ++i, ++m) {
-      if (m == MMAX - 1) {
-        fprintf(stderr, "too many rows\n");
+  for (i = 1; fgets(buf, sizeof(buf), stdin); ++i, ++m) {
+    if (m == MMAX - 1) {
+      fprintf(stderr, "too many rows\n");
+      exit(EXIT_FAILURE);
+    }
+    for (j = 1, n = 1; buf[j - 1] != '\n'; ++j, ++n) {
+      if (n == NMAX - 1) {
+        fprintf(stderr, "too many columns\n");
         exit(EXIT_FAILURE);
       }
-      for (j = 1, n = 1; buf[j - 1] != '\n'; ++j, ++n) {
-        if (n == NMAX - 1) {
-          fprintf(stderr, "too many columns\n");
-          exit(EXIT_FAILURE);
-        }
-        if (buf[j - 1] < '0' || '9' < buf[j - 1]) {
-          fprintf(stderr, "cannot parse a number");
-          exit(EXIT_FAILURE);
-        }
-        matrix[AT(i, j)] = buf[j - 1] - '0';
+      if (buf[j - 1] < '0' || '9' < buf[j - 1]) {
+        fprintf(stderr, "cannot parse a number");
+        exit(EXIT_FAILURE);
       }
+      matrix[AT(i, j)] = buf[j - 1] - '0';
     }
   }
   m++;
