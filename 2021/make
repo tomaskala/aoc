@@ -7,6 +7,6 @@ if [ "$1" = clean ]; then
   rm -f "${directory}"/*/*.o
 else
   for src in "${directory}"/*/*.c; do
-    gcc -ansi -Wall -Wextra -Werror -O3 -pedantic -o "${src%.c}.o" "${src}"
+    gcc -ansi -Wall -Wextra -Werror -g -O3 -pedantic -o "${src%.c}.o" "${src}"
   done
 fi
