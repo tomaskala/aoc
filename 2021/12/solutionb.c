@@ -19,31 +19,31 @@ struct node {
   struct node *next;
 };
 
-struct graph *
+static struct graph *
 graph_new();
 
-size_t
+static size_t
 graph_add_node(struct graph *, char *);
 
-void
+static void
 graph_add_edge(struct graph *, char *, char *);
 
-int
+static int
 graph_count_paths(struct graph *);
 
-int
+static int
 graph_dfs(struct graph *, size_t, int);
 
-void
+static void
 graph_free(struct graph *);
 
-struct node *
+static struct node *
 node_new(char *);
 
-void
+static void
 node_free(struct node *);
 
-struct graph *
+static struct graph *
 graph_new()
 {
   struct graph *g = malloc(sizeof(struct graph));
@@ -55,7 +55,7 @@ graph_new()
   return g;
 }
 
-size_t
+static size_t
 graph_add_node(struct graph *g, char *id)
 {
   size_t i;
@@ -77,7 +77,7 @@ graph_add_node(struct graph *g, char *id)
   return g->n++;
 }
 
-void
+static void
 graph_add_edge(struct graph *g, char *id1, char *id2)
 {
   struct node *n;
@@ -91,14 +91,14 @@ graph_add_edge(struct graph *g, char *id1, char *id2)
   n->next->idx = idx1;
 }
 
-int
+static int
 graph_count_paths(struct graph *g)
 {
   g->visited[g->start] = 1;
   return graph_dfs(g, g->start, 1);
 }
 
-int
+static int
 graph_dfs(struct graph *g, size_t i, int revisit)
 {
   int total = 0;
@@ -121,7 +121,7 @@ graph_dfs(struct graph *g, size_t i, int revisit)
   return total;
 }
 
-void
+static void
 graph_free(struct graph *g)
 {
   size_t i;
@@ -137,7 +137,7 @@ graph_free(struct graph *g)
   free(g);
 }
 
-struct node *
+static struct node *
 node_new(char *id)
 {
   size_t idlen;
@@ -151,7 +151,7 @@ node_new(char *id)
   return n;
 }
 
-void
+static void
 node_free(struct node *n)
 {
   free(n->id);

@@ -8,7 +8,7 @@
 #define AT(i, j) ((i) * (NMAX) + (j))
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 
-size_t
+static size_t
 foldx(char matrix[MMAX * NMAX], size_t m, size_t n, size_t coord)
 {
   size_t i, j;
@@ -19,7 +19,7 @@ foldx(char matrix[MMAX * NMAX], size_t m, size_t n, size_t coord)
   return coord;
 }
 
-size_t
+static size_t
 foldy(char matrix[MMAX * NMAX], size_t m, size_t n, size_t coord)
 {
   size_t i, j;
