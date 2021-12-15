@@ -12,6 +12,11 @@ struct elem {
   long priority;
 };
 
+struct heap {
+  size_t size;
+  struct elem *elems[MMAX * NMAX + 1];
+};
+
 static struct elem *
 elem_new(size_t i, size_t j, long priority)
 {
@@ -27,11 +32,6 @@ elem_free(struct elem *e)
 {
   free(e);
 }
-
-struct heap {
-  size_t size;
-  struct elem *elems[MMAX * NMAX + 1];
-};
 
 static struct heap *
 heap_new()
