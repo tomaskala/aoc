@@ -15,7 +15,7 @@ struct elem {
 
 struct heap {
   size_t size;
-  struct elem *elems[MMAX * NMAX + 1];
+  struct elem **elems;
 };
 
 static struct elem *
@@ -39,7 +39,7 @@ heap_new()
 {
   struct heap *h = malloc(sizeof(struct heap));
   h->size = 0;
-  h->elems[0] = NULL;
+  h->elems = calloc(MMAX * NMAX + 1, sizeof(struct elem*));
   return h;
 }
 
@@ -91,11 +91,12 @@ heap_pop(struct heap *h)
 static void
 heap_free(struct heap *h)
 {
+  free(h->elems);
   free(h);
 }
 
 static long
-dijkstra(long matrix[MMAX * NMAX], size_t m, size_t n)
+dijkstra(long *matrix, size_t m, size_t n)
 {
   #define PUSH(vi, vj) do { \
     if (!visited[AT(vi, vj)] && dist[AT(e->i, e->j)] + matrix[AT(vi, vj)] \
@@ -105,8 +106,8 @@ dijkstra(long matrix[MMAX * NMAX], size_t m, size_t n)
       heap_push(h, f); \
     } \
   } while (0)
-  int visited[MMAX * NMAX] = {0};
-  long dist[MMAX * NMAX] = {0};
+  int *visited = calloc(MMAX * NMAX, sizeof(int));
+  long *dist = calloc(MMAX * NMAX, sizeof(long)), result;
   size_t i;
   struct elem *e = elem_new(0, 0, matrix[0]), *f;
   struct heap *h = heap_new();
@@ -127,7 +128,10 @@ dijkstra(long matrix[MMAX * NMAX], size_t m, size_t n)
     elem_free(e);
   }
   heap_free(h);
-  return dist[AT(m - 1, n - 1)];
+  result = dist[AT(m - 1, n - 1)];
+  free(visited);
+  free(dist);
+  return result;
 }
 
 int
@@ -135,7 +139,7 @@ main(void)
 {
   char buf[128] = {'\0'};
   size_t i, j, m, n = 0;
-  long matrix[MMAX * NMAX] = {0}, risk, curr;
+  long *matrix = calloc(MMAX * NMAX, sizeof(long)), risk, curr;
   for (i = 0, m = 0; fgets(buf, sizeof(buf), stdin); ++i, ++m) {
     if (i == MMAX / REPEATS) {
       fprintf(stderr, "too many rows\n");
@@ -163,5 +167,6 @@ main(void)
   n *= REPEATS;
   risk = dijkstra(matrix, m, n);
   printf("%ld\n", risk);
+  free(matrix);
   return EXIT_SUCCESS;
 }

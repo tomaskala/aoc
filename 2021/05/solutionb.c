@@ -32,7 +32,7 @@ main(void)
 {
   char buf[32] = {'\0'}, *tok1, *tok2;
   size_t x1, x2, y1, y2, i, j;
-  int mat[MMAX * NMAX] = {0}, total = 0;
+  int *mat = calloc(MMAX * NMAX, sizeof(int)), total = 0;
   while (!feof(stdin)) {
     if (fgets(buf, sizeof(buf), stdin)) {
       if (!(tok1 = strtok(buf, " -> "))) {
@@ -68,5 +68,6 @@ main(void)
   for (i = 0; i < MMAX * NMAX; ++i)
     total += mat[i] >= 2;
   printf("%d\n", total); 
+  free(mat);
   return EXIT_SUCCESS;
 }

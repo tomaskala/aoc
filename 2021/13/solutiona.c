@@ -9,7 +9,7 @@
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 
 static size_t
-foldx(char matrix[MMAX * NMAX], size_t m, size_t n, size_t coord)
+foldx(char *matrix, size_t m, size_t n, size_t coord)
 {
   size_t i, j;
   for (i = 0; i < m; ++i)
@@ -20,7 +20,7 @@ foldx(char matrix[MMAX * NMAX], size_t m, size_t n, size_t coord)
 }
 
 static size_t
-foldy(char matrix[MMAX * NMAX], size_t m, size_t n, size_t coord)
+foldy(char *matrix, size_t m, size_t n, size_t coord)
 {
   size_t i, j;
   for (i = coord + 1; i < m; ++i)
@@ -34,7 +34,7 @@ int
 main(void)
 {
   char buf[2048] = {'\0'}, *tok, axis;
-  char matrix[MMAX * NMAX];
+  char *matrix = malloc(MMAX * NMAX * sizeof(char));
   int dots = 1, total = 0;
   size_t i, x, y, coord, mmax = 0, nmax = 0;
   for (i = 0; i < MMAX * NMAX; ++i)
@@ -114,5 +114,6 @@ main(void)
     for (x = 0; x < nmax; ++x)
       total += matrix[AT(y, x)] == '#';
   printf("%d\n", total);
+  free(matrix);
   return EXIT_SUCCESS;
 }
