@@ -29,9 +29,6 @@ static struct node *
 add(struct node *, struct node *);
 
 static int
-reduce(struct node *);
-
-static int
 explode(struct node *, int);
 
 static int
@@ -139,18 +136,8 @@ add(struct node *a, struct node *b)
   a->parent = root;
   root->right = b;
   b->parent = root;
-  while (reduce(root));
+  while (explode(root, 0) || split(root));
   return root;
-}
-
-static int
-reduce(struct node *root)
-{
-  if (explode(root, 0))
-    return 1;
-  if (split(root))
-    return 1;
-  return 0;
 }
 
 static int
