@@ -1,0 +1,12 @@
+#!/bin/sh
+
+script=$(readlink -f "$0")
+directory=$(dirname "${script}")
+
+if [ "$1" = clean ]; then
+  rm -f "${directory}"/*/*.o
+else
+  for src in "${directory}"/*/*.c; do
+    gcc -std=c99 -Wall -Wextra -Werror -O3 -pedantic -o "${src%.c}.o" "${src}"
+  done
+fi
