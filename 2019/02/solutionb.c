@@ -22,9 +22,7 @@ int intcode_read(char *buf, int *out)
     out[i] = (int) strtol(buf, &endptr, 10);
     if (errno)
       return 0;
-    while (*endptr != '\0' && (*endptr < '0' || '9' < *endptr))
-      endptr++;
-    buf = endptr;
+    buf = endptr + 1;
   }
   return i;
 }
