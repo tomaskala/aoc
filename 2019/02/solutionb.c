@@ -2,10 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+enum instruction {
+  ADD = 1,
+  MULTIPLY = 2,
+  HALT = 99,
+};
+
 int arity[] = {
-  [1] = 3,
-  [2] = 3,
-  [99] = 0,
+  [ADD] = 3,
+  [MULTIPLY] = 3,
+  [HALT] = 0,
 };
 
 int intcode_read(char *buf, int *out)
@@ -30,17 +36,22 @@ int intcode_interpret(int *code, int length)
   int ip = 0;
   while (ip < length) {
     switch (code[ip]) {
-    case 1:
+    case ADD:
       BINARY(+);
       break;
-    case 2:
+    case MULTIPLY:
       BINARY(*);
       break;
+    case HALT:
+      goto done;
+    default:
+      fprintf(stderr, "Unexpected instruction '%d' at position '%d'\n",
+          code[ip], ip);
+      exit(EXIT_FAILURE);
     }
-    if (code[ip] == 99)
-      break;
     ip += arity[code[ip]] + 1;
   }
+done:
   #undef BINARY
   return code[0];
 }
