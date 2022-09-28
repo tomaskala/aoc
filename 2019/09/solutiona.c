@@ -148,7 +148,7 @@ int decode(struct vm *vm, int offset, enum parameter_mode mode)
   case IMMEDIATE:
     return vm->ip + offset;
   case RELATIVE:
-    return vm->base + code_get(vm->code, vm->ip + offset);
+    return vm->base + (int) code_get(vm->code, vm->ip + offset);
   default:
     fprintf(stderr, "Unexpected parameter mode '%d'\n", mode);
     vm_free(vm);
