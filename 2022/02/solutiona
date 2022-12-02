@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+declare -i score=0
+declare -A points=( [X]=1 [Y]=2 [Z]=3 )
+declare -A outcomes=(
+  ["A Z"]=0 ["B X"]=0 ["C Y"]=0
+  ["A X"]=3 ["B Y"]=3 ["C Z"]=3
+  ["A Y"]=6 ["B Z"]=6 ["C X"]=6
+)
+
+while read -r fst snd; do
+  (( score += "${points["${snd}"]}" + "${outcomes["${fst} ${snd}"]}" ))
+done
+
+printf '%d\n' "${score}"
