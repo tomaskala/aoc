@@ -1,0 +1,17 @@
+#!/bin/sh
+# Run a QEMU VM, forwarding the host port 5022 to the guest port 22.
+# That way, SSH can be used to exchange files between the two machines.
+# Assumes that the ssh.service is running on the guest machine.
+set -euf
+
+image="${1:-./image.qcow2}"
+[ ! -e "${image}" ] && echo "No image found" >&2 && exit 1
+
+qemu-system-x86_64 \
+  -enable-kvm \
+  -cpu host \
+  -smp 2 \
+  -m 8G \
+  -no-reboot \
+  -nic user,hostfwd=tcp::5022-:22 \
+  -drive format=qcow2,file="${image}"
