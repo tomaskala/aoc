@@ -4,11 +4,14 @@ My solutions for Advent Of Code.
 
 ## 2021
 
-The [2021](2021) directory contains the solutions for the year 2021 in ANSI C.
+The [2021](2021) directory contains my solutions for the year 2021 in ANSI C. 
+At the time, I didn't know C very well, and it shows. All solutions pass 
+valgrind without errors, but there are some unnecessary heap allocations and 
+weird constructs here and there.
 
 ## 2022
 
-The [2022](2022) directory contains the solutions for the year 2022 in the 
+The [2022](2022) directory contains my solutions for the year 2022 in the 
 following languages, a different one per each day.
 
 1. [C](2022/01)
