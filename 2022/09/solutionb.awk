@@ -1,12 +1,3 @@
-BEGIN {
-  for (i = 0; i < 10; i++) {
-    ropex[i] = 0
-    ropey[i] = 0
-  }
-
-  visited[0, 0] = true
-}
-
 function sign(x) {
   return x < 0 ? -1 : x > 0 ? 1 : 0
 }
@@ -33,6 +24,15 @@ function move_tail() {
 
     visited[ropex[9], ropey[9]] = true
   }
+}
+
+BEGIN {
+  for (i = 0; i < 10; i++) {
+    ropex[i] = 0
+    ropey[i] = 0
+  }
+
+  visited[0, 0] = true
 }
 
 $1 == "R" {

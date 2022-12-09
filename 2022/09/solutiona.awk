@@ -1,11 +1,3 @@
-BEGIN {
-  ropex[0] = 0
-  ropey[0] = 0
-  ropex[1] = 0
-  ropey[1] = 0
-  visited[0, 0] = true
-}
-
 function sign(x) {
   return x < 0 ? -1 : x > 0 ? 1 : 0
 }
@@ -30,6 +22,14 @@ function move_tail() {
   ropey[1] += sign(ropey[0] - ropey[1])
 
   visited[ropex[1], ropey[1]] = true
+}
+
+BEGIN {
+  ropex[0] = 0
+  ropey[0] = 0
+  ropex[1] = 0
+  ropey[1] = 0
+  visited[0, 0] = true
 }
 
 $1 == "R" {
