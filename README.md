@@ -28,7 +28,7 @@ following languages, a different one per each day.
 12. [Go](2022/12)
 13. [Python](2022/13)
 14. [R](2022/14)
-15. [Java](2022/15)
+15. [Kotlin](2022/15)
 16. [Zig](2022/16)
 17. [Scheme](2022/17)
 18. [Julia](2022/18)
