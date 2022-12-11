@@ -12,7 +12,15 @@ weird constructs here and there.
 ## 2022
 
 The [2022](2022) directory contains my solutions for the year 2022 in the 
-following languages, a different one per each day.
+following languages, a different one per each day. I generated the list below 
+by randomly shuffling a list of languages before this year's AoC began. This 
+prevents me from choosing a language that would make the given task trivial.
+
+I had to make a change, though. Originally, I had planned to solve day 11 in 
+OCaml. After spending several hours trying to compile a piece of code that 
+depended on the Base library, I gave up and rewrote the program in Haskell. 
+When the user needs to install several complex build tools only to compile a 
+simple hello world program, it's no wonder that OCaml is barely used.
 
 1. [C](2022/01)
 2. [Bash](2022/02)
@@ -24,7 +32,7 @@ following languages, a different one per each day.
 8. [Erlang](2022/08)
 9. [Awk](2022/09)
 10. [Fennel](2022/10)
-11. [OCaml](2022/11)
+11. [Haskell](2022/11)
 12. [Go](2022/12)
 13. [Python](2022/13)
 14. [R](2022/14)
