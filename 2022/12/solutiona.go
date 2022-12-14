@@ -13,28 +13,18 @@ var (
 	errQueueEmpty = errors.New("Queue empty")
 )
 
-type queue struct {
-	channel chan position
-}
-
-func newQueue(capacity int) *queue {
-	return &queue{
-		channel: make(chan position, capacity),
-	}
-}
-
-func (q *queue) enqueue(pos position) error {
+func enqueue(q chan position, pos position) error {
 	select {
-	case q.channel <- pos:
+	case q <- pos:
 		return nil
 	default:
 		return errQueueFull
 	}
 }
 
-func (q *queue) dequeue() (position, error) {
+func dequeue(q chan position) (position, error) {
 	select {
-	case val := <-q.channel:
+	case val := <-q:
 		return val, nil
 	default:
 		return position{0, 0}, errQueueEmpty
@@ -58,11 +48,11 @@ func bfs(grid [][]byte, start, end position) (int, error) {
 		costs[row] = make([]int, cols)
 	}
 
-	queue := newQueue(rows * cols)
-	queue.enqueue(start)
+	queue := make(chan position, rows*cols)
+	enqueue(queue, start)
 
 	for {
-		curr, err := queue.dequeue()
+		curr, err := dequeue(queue)
 		if err != nil {
 			return math.MaxInt, err
 		}
@@ -83,7 +73,7 @@ func bfs(grid [][]byte, start, end position) (int, error) {
 			costs[next.row][next.col] = costs[curr.row][curr.col] + 1
 			visited[next.row][next.col] = true
 
-			err = queue.enqueue(next)
+			err = enqueue(queue, next)
 			if err != nil {
 				return math.MaxInt, err
 			}
