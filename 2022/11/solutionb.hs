@@ -57,7 +57,7 @@ catchItem item m = m { items = (items m) ++ [item] }
 
 catchItems :: Int -> Monkey -> M.Map Int Monkey -> M.Map Int Monkey
 catchItems norm Monkey {..} monkeys = foldl' throw monkeys items
-  where adjustWorry = (`mod` norm) . operation  -- TODO
+  where adjustWorry = (`mod` norm) . operation
         target i = bool targetFalse targetTrue (i `mod` divisor == 0)
         throw acc item =
           let newItem = adjustWorry item
