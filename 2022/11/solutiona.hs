@@ -25,7 +25,7 @@ data Monkey = Monkey
 number :: Parser Int
 number = read <$> many1 digit
 
-readFunction :: Char -> (Int -> Int -> Int)
+readFunction :: Char -> Int -> Int -> Int
 readFunction '+' = (+)
 readFunction '*' = (*)
 
