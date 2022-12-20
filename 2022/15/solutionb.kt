@@ -4,9 +4,7 @@ import kotlin.math.abs
 import kotlin.system.exitProcess
 
 data class Point(val x: Int, val y: Int) {
-  fun dist(p: Point): Int {
-    return abs(x - p.x) + abs(y - p.y)
-  }
+  fun dist(p: Point): Int = abs(x - p.x) + abs(y - p.y)
 }
 
 data class Sensor(val sensorPos: Point, val beaconPos: Point) {

@@ -4,9 +4,7 @@ import kotlin.math.abs
 import kotlin.system.exitProcess
 
 data class Point(val x: Int, val y: Int) {
-  fun dist(p: Point): Int {
-    return abs(x - p.x) + abs(y - p.y)
-  }
+  fun dist(p: Point): Int = abs(x - p.x) + abs(y - p.y)
 }
 
 data class Sensor(val sensorPos: Point, val beaconPos: Point) {
@@ -14,7 +12,7 @@ data class Sensor(val sensorPos: Point, val beaconPos: Point) {
 
   fun coveredRow(y: Int): IntRange? {
     val width = radius - abs(y - sensorPos.y)
-    return (sensorPos.x - width .. sensorPos.x + width).takeIf { !it.isEmpty() }
+    return (sensorPos.x - width .. sensorPos.x + width).takeUnless(IntRange::isEmpty)
   }
 }
 
@@ -48,10 +46,10 @@ fun main(args: Array<String>) {
   val coveredRows = sensors.mapNotNull { it.coveredRow(y) }
   val rangeStarts = coveredRows
     .map { it.first }
-    .filter { start -> !coveredRows.any { start - 1 in it } }
+    .filter { start -> coveredRows.none { start - 1 in it } }
   val rangeEnds = coveredRows
     .map { it.last }
-    .filter { end -> !coveredRows.any { end + 1 in it } }
+    .filter { end -> coveredRows.none { end + 1 in it } }
   val totalCovered = rangeStarts
     .map { start -> start .. rangeEnds.filter { start < it }.min() }
     .sumOf { it.last - it.first + 1 }
