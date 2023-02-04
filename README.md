@@ -20,7 +20,8 @@ I had to make a change, though. Originally, I had planned to solve day 11 in
 OCaml. After spending several hours trying to compile a piece of code that 
 depended on the Base library, I gave up and rewrote the program in Haskell. 
 When the user needs to install several complex build tools only to compile a 
-simple hello world program, it's no wonder that OCaml is barely used.
+simple hello world program, it's no wonder that OCaml is barely used. To keep 
+the languages unique, I implemented day 20 in Java instead.
 
 1. [C](2022/01)
 2. [Bash](2022/02)
@@ -41,7 +42,7 @@ simple hello world program, it's no wonder that OCaml is barely used.
 17. [Scheme](2022/17)
 18. [Julia](2022/18)
 19. [Ruby](2022/19)
-20. [Haskell](2022/20)
+20. [Java](2022/20)
 21. [Scala](2022/21)
 22. [Clojure](2022/22)
 24. [C#](2022/23)
