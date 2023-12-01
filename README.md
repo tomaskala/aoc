@@ -48,3 +48,27 @@ the languages unique, I implemented day 20 in Java instead.
 24. [C#](2022/23)
 23. [Perl](2022/24)
 25. [Lua](2022/25)
+
+## 2023
+
+The [2023](2023) directory contains my solutions for the year 2023 in 
+TypeScript, which I needed to learn at the time.
+
+### Installing dependencies
+
+```
+$ cd 2023
+$ npm install
+```
+
+### Formatting
+
+```
+$ npx prettier . --write
+```
+
+### Static checks
+
+```
+$ npx eslint .
+```
